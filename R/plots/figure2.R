@@ -76,6 +76,30 @@ NX_Y <- list(
   y = 0.95,
   showarrow = FALSE)
 
+L_Yh2 <- list(
+  text = "L<sub>h2</sub>/Y<sub>h2</sub>",
+  font = list(size = 14),
+  xref = "paper",
+  yref = "paper",
+  yanchor = "bottom",
+  xanchor = "center",
+  align = "center",
+  x = 0.5,
+  y = 0.95,
+  showarrow = FALSE)
+
+NIIP_Y <- list(
+  text = "(NIIP/Y",
+  font = list(size = 14),
+  xref = "paper",
+  yref = "paper",
+  yanchor = "bottom",
+  xanchor = "center",
+  align = "center",
+  x = 0.5,
+  y = 0.95,
+  showarrow = FALSE)
+
 # Utilization rate
 p_u <- plot_ly() %>% 
   add_trace(x = 0:(nrow(d1)-3),
@@ -271,12 +295,68 @@ p_NX <- plot_ly() %>%
 
 #p_NX
 
+# NIIP share
+p_NIIP <- plot_ly() %>% 
+  add_trace(x = 0:(nrow(d1)-3),
+            y = 0,
+            type = "scatter",
+            mode = "lines",
+            name = "Baseline",
+            line = list(color = "grey")) %>% 
+  add_trace(x = 0:(nrow(d2)-1),
+            y = d2$NIIP_Y,
+            type = "scatter",
+            mode = "lines",
+            line = list(color = "black"),
+            name = "Domestic economy") %>% 
+  add_trace(x = 0:(nrow(d2)-1),
+            y = d2$NIIP_Yx,
+            type = "scatter",
+            mode = "lines",
+            line = list(color = "red",
+                        dash = "dash"),
+            name = "Foreign economy") %>% 
+  layout(xaxis = list(range = c(-10, 1500),
+                      tickfont = list(size = 8)),
+         yaxis = list(range = c(-2.5, 2.5),
+                      tickfont = list(size = 8),
+                      dtick = 1),
+         annotations = NIIP_Y,
+         showlegend = TRUE,
+         hovermode = "compare")
+
+# p_NIIP
+
+# Debt to income ratio
+p_L_Yh2 <- plot_ly() %>% 
+  add_trace(x = 0:(nrow(d2)-1),
+            y = d2$L_Yh2,
+            type = "scatter",
+            mode = "lines",
+            line = list(color = "black"),
+            name = "(L/Y)<sub>h2</sub>") %>% 
+  add_trace(x = 0:(nrow(d1)-3),
+            y = 0,
+            type = "scatter",
+            mode = "lines",
+            name = "Baseline",
+            line = list(color = "grey")) %>% 
+  layout(xaxis = list(range = c(-10, 1500),
+                      tickfont = list(size = 8)),
+         yaxis = list(range = c(-0.01, 0.4), 
+                      tickfont = list(size = 8)),
+         annotations = L_Yh2,
+         showlegend = TRUE,
+         hovermode = "compare")
+
+#p_L_Yh2
+
 sub_plots <- subplot(style(p_u, showlegend = FALSE),
-                     style(p_gr_Y, showlegend = FALSE),
                      style(p_C, showlegend = FALSE),
+                     style(p_L_Yh2, showlegend = FALSE),
                      style(p_I, showlegend = FALSE),
-                     style(p_G, showlegend = FALSE),
-                     p_NX,
+                     style(p_NX, showlegend = FALSE),
+                     p_NIIP,
                      nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
   layout(legend = list(x = 0.5,
                        orientation = "h",
