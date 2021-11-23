@@ -85,7 +85,7 @@ p_u <- plot_ly() %>%
             line = list(color = "black"),
             name = "u") %>% 
   add_trace(x = 0:(nrow(d1)-1),
-            y = d1$u,
+            y = d1$ux,
             type = "scatter",
             mode = "lines",
             line = list(color = "red",
@@ -93,7 +93,8 @@ p_u <- plot_ly() %>%
             name = "u<sub>x</sub>") %>%
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
-         yaxis = list(tickfont = list(size = 8),
+         yaxis = list(range = c(0, 1.0),
+                      tickfont = list(size = 8),
                       dtick = 0.25),
          annotations = u,
          showlegend = TRUE,
@@ -103,27 +104,27 @@ p_u <- plot_ly() %>%
 
 # Growth rate of output
 p_gr_Y <- plot_ly() %>% 
-  add_trace(x = 0:(nrow(d1)-3),
-            y = tail(d1$gr_Y, 1),
-            type = "scatter",
-            mode = "lines",
-            line = list(color = "black",
-                        dash = "dot",
-                        width = 1),
-            hoverinfo = "none") %>% 
+  # add_trace(x = 0:(nrow(d1)-3),
+  #           y = tail(d1$gr_Y, 1),
+  #           type = "scatter",
+  #           mode = "lines",
+  #           line = list(color = "black",
+  #                       dash = "dot",
+  #                       width = 1),
+  #           hoverinfo = "none") %>% 
   add_trace(x = 0:(nrow(d1)-3),
             y = d1$gr_Y[3:nrow(d1)],
             type = "scatter",
             mode = "lines",
             line = list(color = "black"),
-            name = "gr<sub>Y<sub>") %>% 
+            name = "gr<sub>&#770;Y<sub>") %>% 
   add_trace(x = 0:(nrow(d1)-3),
             y = d1$gr_Yx[3:nrow(d1)],
             type = "scatter",
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "gr<sub>Y<sub>x</sub></sub>") %>%
+            name = "gr<sub>&#770;Y<sub>x</sub></sub>") %>%
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(0, 0.040),
@@ -151,7 +152,8 @@ p_C <- plot_ly() %>%
             name = "C/Y<sub>x</sub>") %>%
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
-         yaxis = list(tickfont = list(size = 8)),
+         yaxis = list(range = c(0, 0.70),
+                      tickfont = list(size = 8)),
          annotations = C_Y,
          showlegend = TRUE,
          hovermode = "compare")
@@ -174,7 +176,8 @@ p_I <- plot_ly() %>%
             name = "I/Y<sub>x</sub>") %>%
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
-         yaxis = list(tickfont = list(size = 8)),
+         yaxis = list(range = c(0, 0.25),
+                      tickfont = list(size = 8)),
          annotations = I_Y,
          showlegend = TRUE,
          hovermode = "compare")
@@ -198,7 +201,8 @@ p_G <- plot_ly() %>%
             name = "G/Y<sub>x</sub>") %>%
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
-         yaxis = list(tickfont = list(size = 8)),
+         yaxis = list(range = c(0, 0.35),
+                      tickfont = list(size = 8)),
          annotations = G_Y,
          showlegend = TRUE,
          hovermode = "compare")
