@@ -604,7 +604,7 @@ d4 <- data.frame(
 # DLPD to ELM
 shock_5 <- sfcr_shock(
   variables = sfcr_set(
-    sigma ~ 0.99,
+    sigma ~ 0.95,
     psi ~ 0.015,
     er ~ 1,
     phi ~ 0.04,
