@@ -454,7 +454,12 @@ d2 <- data.frame(
   G_Y = DLPD_ELM$G_Y_share,
   G_Yx = DLPD_ELM$G_Y_sharex,
   NX_Y = DLPD_ELM$NX_Y_share,
-  NX_Yx = DLPD_ELM$NX_Y_sharex
+  NX_Yx = DLPD_ELM$NX_Y_sharex,
+  # Additional variables
+  L_Yh2 = DLPD_ELM$L_Y_ratio_h_2,
+  NIIP_Y = DLPD_ELM$NIIP_Y_ratio,
+  L_Yh2x = DLPD_ELM$L_Y_ratio_h_2x,
+  NIIP_Yx = DLPD_ELM$NIIP_Y_ratiox
 )
 
 # Crisis
@@ -532,7 +537,12 @@ d3 <- data.frame(
   G_Y = crisis$G_Y_share,
   G_Yx = crisis$G_Y_sharex,
   NX_Y = crisis$NX_Y_share,
-  NX_Yx = crisis$NX_Y_sharex
+  NX_Yx = crisis$NX_Y_sharex,
+  # Additional variables
+  L_Yh2 = DLPD_ELM$L_Y_ratio_h_2,
+  NIIP_Y = DLPD_ELM$NIIP_Y_ratio,
+  L_Yh2x = DLPD_ELM$L_Y_ratio_h_2x,
+  NIIP_Yx = DLPD_ELM$NIIP_Y_ratiox
 )
 
 # DLPD to DDL
@@ -598,7 +608,12 @@ d4 <- data.frame(
   G_Y = DDL$G_Y_share,
   G_Yx = DDL$G_Y_sharex,
   NX_Y = DDL$NX_Y_share,
-  NX_Yx = DDL$NX_Y_sharex
+  NX_Yx = DDL$NX_Y_sharex,
+  # Additional variables
+  L_Yh2 = DLPD_ELM$L_Y_ratio_h_2,
+  NIIP_Y = DLPD_ELM$NIIP_Y_ratio,
+  L_Yh2x = DLPD_ELM$L_Y_ratio_h_2x,
+  NIIP_Yx = DLPD_ELM$NIIP_Y_ratiox
 )
 
 # DLPD to ELM
@@ -669,7 +684,13 @@ d5 <- data.frame(
   G_Y = ELM$G_Y_share,
   G_Yx = ELM$G_Y_sharex,
   NX_Y = ELM$NX_Y_share,
-  NX_Yx = ELM$NX_Y_sharex
+  NX_Yx = ELM$NX_Y_sharex,
+  # Additional variables
+  L_Yh2 = DLPD_ELM$L_Y_ratio_h_2,
+  NIIP_Y = DLPD_ELM$NIIP_Y_ratio,
+  L_Yh2x = DLPD_ELM$L_Y_ratio_h_2x,
+  NIIP_Yx = DLPD_ELM$NIIP_Y_ratiox
+  
 )
 
 save(d1, dbl, d2, d3, d4, d5, file = here::here("R/simulated_series_for_plots"))
