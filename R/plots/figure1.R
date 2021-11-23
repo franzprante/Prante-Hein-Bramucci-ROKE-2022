@@ -191,14 +191,14 @@ p_G <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             line = list(color = "black"),
-            name = "G/Y") %>% 
+            name = "Domestic economy") %>% 
   add_trace(x = 0:(nrow(d1)-1),
             y = d1$G_Yx,
             type = "scatter",
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "G/Y<sub>x</sub>") %>%
+            name = "Foreign economy") %>%
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(0, 0.35),
@@ -253,4 +253,22 @@ sub_plots
 # orca(
 #   sub_plots,
 #   file = "R/plots/figure1.pdf"
+# )
+
+sub_plots_smaller <- subplot(style(p_u, showlegend = FALSE),
+                             style(p_C, showlegend = FALSE),
+                             style(p_I, showlegend = FALSE),
+                             p_G,
+                             nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
+  layout(legend = list(x = 0.5,
+                       orientation = "h",
+                       xanchor = "center",
+                       font = list(size = 12))) %>% 
+  config(displayModeBar = F)
+
+sub_plots_smaller
+
+# orca(
+#   sub_plots_smaller,
+#   file = "R/plots/figure1_smaller.pdf"
 # )
