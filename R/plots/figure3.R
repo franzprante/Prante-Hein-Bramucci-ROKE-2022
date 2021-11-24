@@ -77,7 +77,7 @@ NX_Y <- list(
   showarrow = FALSE)
 
 L_Yh2 <- list(
-  text = "L<sub>h2</sub>/Y<sub>h2</sub>",
+  text = "L<sub>h2</sub>/Y<sub>d</sub><sub>h2</sub>",
   font = list(size = 14),
   xref = "paper",
   yref = "paper",
