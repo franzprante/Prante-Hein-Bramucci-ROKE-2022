@@ -1,4 +1,5 @@
 library(sfcr)
+# Please ensure that all dependencies of the SFCR package are installed in a compatible version (see https://github.com/joaomacalos/sfcr/blob/main/DESCRIPTION).
 source(here::here("R/simplot.R"))
 #TODO Delete the above line and the file "simplot.R" when Plotly figures are done.
 
