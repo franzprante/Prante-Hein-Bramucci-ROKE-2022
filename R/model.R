@@ -323,11 +323,6 @@ bl <- sfcr_baseline(
   rhtol = TRUE,
 )
 
-par(mfrow = c(1,1))
-plot(bl$V_glob, type = "l", lty = 14, lwd = 3, col = 2)
-lines(bl$K_glob)
-mtext(latex2exp::TeX("SFC-check: V_{global} vs. K_{global}"))
-
 # Base R figure 1
 layout(matrix(c(1, 2, 3,
                 4, 5, 6,
@@ -410,11 +405,6 @@ DLPD_ELM <- sfcr_scenario(
   periods = 2500
 )
 
-par(mfrow = c(1,1))
-plot(DLPD_ELM$V_glob, type = "l", lty = 14, lwd = 3, col = 2)
-lines(DLPD_ELM$K_glob)
-mtext(latex2exp::TeX("SFC-check: V_{global} vs. K_{global}"))
-
 # Base R figure 2
 layout(matrix(c(1, 2, 3,
                 4, 5, 6,
@@ -461,11 +451,11 @@ d2 <- data.frame(
 # Crisis
 shock_2 <- sfcr_shock(
   variables = sfcr_set(
-    ws ~ seq(0.55, 0.547, length.out = 30),
-    ws_1 ~ seq(0.3, 0.303, length.out = 30)
+    ws ~ 0.545,
+    ws_1 ~ 0.305
   ),
   start = 1000,
-  end = 1029
+  end = 2500
 )
 
 shock_3 <- sfcr_shock(
@@ -474,7 +464,7 @@ shock_3 <- sfcr_shock(
     alpha ~ 0
     
   ),
-  start = 1030,
+  start = 1009,
   end = 2500
 )
 
@@ -487,11 +477,6 @@ crisis <- sfcr_scenario(
   ),
   periods = 2500
 )
-
-par(mfrow = c(1,1))
-plot(crisis$V_glob, type = "l", lty = 14, lwd = 3, col = 2)
-lines(crisis$K_glob)
-mtext(latex2exp::TeX("SFC-check: V_{global} vs. K_{global}"))
 
 # Base R figure 3
 layout(matrix(c(1, 2, 3,
@@ -543,7 +528,7 @@ shock_4 <- sfcr_shock(
     ws ~ 0.6,
     ws_1 ~ 0.2
   ),
-  start = 1031,
+  start = 1010,
   end = 2500
 )
 DDL <- sfcr_scenario(
@@ -556,11 +541,6 @@ DDL <- sfcr_scenario(
   ),
   periods = 2500
 )
-
-par(mfrow = c(1,1))
-plot(DDL$V_glob, type = "l", lty = 14, lwd = 3, col = 2)
-lines(DDL$K_glob)
-mtext(latex2exp::TeX("SFC-check: V_{global} vs. K_{global}"))
 
 # Base R figure 4
 layout(matrix(c(1, 2, 
@@ -605,7 +585,7 @@ d4 <- data.frame(
 # DLPD to ELM
 shock_5 <- sfcr_shock(
   variables = sfcr_set(
-    sigma ~ 0.95,
+    sigma ~ 0.97,
     psi ~ 0.015,
     er ~ 1,
     phi ~ 0.04,
@@ -614,7 +594,7 @@ shock_5 <- sfcr_shock(
     ws ~ 0.5,
     ws_1 ~ 0.25
   ),
-  start = 1031,
+  start = 1010,
   end = 2500
 )
 
@@ -628,11 +608,6 @@ ELM <- sfcr_scenario(
   ),
   periods = 2500
 )
-
-par(mfrow = c(1,1))
-plot(ELM$V_glob, type = "l", lty = 14, lwd = 3, col = 2)
-lines(ELM$K_glob)
-mtext(latex2exp::TeX("SFC-check: V_{global} vs. K_{global}"))
 
 # Base R figure 5
 layout(matrix(c(1, 2, 
