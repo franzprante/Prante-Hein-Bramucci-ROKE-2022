@@ -539,10 +539,10 @@ d3 <- data.frame(
   NX_Y = crisis$NX_Y_share,
   NX_Yx = crisis$NX_Y_sharex,
   # Additional variables
-  L_Yh2 = DLPD_ELM$L_Y_ratio_h_2,
-  NIIP_Y = DLPD_ELM$NIIP_Y_ratio,
-  L_Yh2x = DLPD_ELM$L_Y_ratio_h_2x,
-  NIIP_Yx = DLPD_ELM$NIIP_Y_ratiox
+  L_Yh2 = crisis$L_Y_ratio_h_2,
+  NIIP_Y = crisis$NIIP_Y_ratio,
+  L_Yh2x = crisis$L_Y_ratio_h_2x,
+  NIIP_Yx = crisis$NIIP_Y_ratiox
 )
 
 # DLPD to DDL
@@ -610,10 +610,11 @@ d4 <- data.frame(
   NX_Y = DDL$NX_Y_share,
   NX_Yx = DDL$NX_Y_sharex,
   # Additional variables
-  L_Yh2 = DLPD_ELM$L_Y_ratio_h_2,
-  NIIP_Y = DLPD_ELM$NIIP_Y_ratio,
-  L_Yh2x = DLPD_ELM$L_Y_ratio_h_2x,
-  NIIP_Yx = DLPD_ELM$NIIP_Y_ratiox
+  L_Yh2 = DDL$L_Y_ratio_h_2,
+  NIIP_Y = DDL$NIIP_Y_ratio,
+  L_Yh2x = DDL$L_Y_ratio_h_2x,
+  NIIP_Yx = DDL$NIIP_Y_ratiox,
+  S_g = DDL$S_g / DDL$Y
 )
 
 # DLPD to ELM
@@ -686,10 +687,10 @@ d5 <- data.frame(
   NX_Y = ELM$NX_Y_share,
   NX_Yx = ELM$NX_Y_sharex,
   # Additional variables
-  L_Yh2 = DLPD_ELM$L_Y_ratio_h_2,
-  NIIP_Y = DLPD_ELM$NIIP_Y_ratio,
-  L_Yh2x = DLPD_ELM$L_Y_ratio_h_2x,
-  NIIP_Yx = DLPD_ELM$NIIP_Y_ratiox
+  L_Yh2 = ELM$L_Y_ratio_h_2,
+  NIIP_Y = ELM$NIIP_Y_ratio,
+  L_Yh2x = ELM$L_Y_ratio_h_2x,
+  NIIP_Yx = ELM$NIIP_Y_ratiox
   
 )
 
