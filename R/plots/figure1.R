@@ -252,7 +252,7 @@ sub_plots
 
 # orca(
 #   sub_plots,
-#   file = "R/plots/figure1.pdf"
+#   file = "R/plots/figure1.jpeg"
 # )
 
 sub_plots_smaller <- subplot(style(p_u, showlegend = FALSE),
