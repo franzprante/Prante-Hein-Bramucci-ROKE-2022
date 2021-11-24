@@ -89,7 +89,7 @@ L_Yh2 <- list(
   showarrow = FALSE)
 
 NIIP_Y <- list(
-  text = "(NIIP/Y",
+  text = "NIIP/Y",
   font = list(size = 14),
   xref = "paper",
   yref = "paper",
@@ -364,7 +364,7 @@ sub_plots <- subplot(style(p_u, showlegend = FALSE),
                        font = list(size = 12))) %>% 
   config(displayModeBar = F)
 
-sub_plots
+sub_plots_smaller
 
 # orca(
 #   sub_plots,
