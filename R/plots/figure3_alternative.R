@@ -3,6 +3,10 @@ library(plotly)
 # Load the data
 load(here::here("R/simulated_series_for_plots"))
 
+begin <- 950 #-10
+  
+end <- 2000
+
 # Annotations for subplots
 u <- list(
   text = "u",
@@ -121,7 +125,7 @@ p_u <- plot_ly() %>%
             line = list(color = "red",
                         dash = "dash"),
             name = "u<sub>x</sub>") %>%
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(0.55, 0.8),
                       tickfont = list(size = 8),
@@ -161,7 +165,7 @@ p_gr_Y <- plot_ly() %>%
             name = "gr<sub>Y&#770;<sub>x</sub></sub>",
             line = list(color = "red",
                         dash = "dash")) %>%
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(0.014, 0.018),
                       tickfont = list(size = 8)),
@@ -192,7 +196,7 @@ p_C <- plot_ly() %>%
             line = list(color = "red",
                         dash = "dash"),
             name = "C/Y<sub>x</sub>") %>%
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(tickfont = list(size = 8)),
          annotations = C_Y,
@@ -229,7 +233,7 @@ p_I <- plot_ly() %>%
             line = list(color = "red",
                         dash = "dash"),
             name = "I/Y<sub>x</sub>") %>%
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(tickfont = list(size = 8)),
          annotations = I_Y,
@@ -253,7 +257,7 @@ p_G <- plot_ly() %>%
             line = list(color = "red",
                         dash = "dash"),
             name = "G/Y<sub>x</sub>") %>%
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(0, 0.3), 
                       tickfont = list(size = 8)),
@@ -284,9 +288,9 @@ p_NX <- plot_ly() %>%
             line = list(color = "red",
                         dash = "dash"),
             name = "Foreign economy") %>% # NX/Y<sub>x</sub>
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
-         yaxis = list(range = c(-0.05, 0.05),
+         yaxis = list(range = c(-0.02, 0.02),
                       tickfont = list(size = 8),
                       dtick = 0.02),
          annotations = NX_Y,
@@ -297,7 +301,7 @@ p_NX <- plot_ly() %>%
 
 # NIIP share
 p_NIIP <- plot_ly() %>% 
-  add_trace(x = 0:(nrow(d1)-3),
+  add_trace(x = 0:(nrow(d3)-3),
             y = 0,
             type = "scatter",
             mode = "lines",
@@ -316,7 +320,7 @@ p_NIIP <- plot_ly() %>%
             line = list(color = "red",
                         dash = "dash"),
             name = "Foreign economy") %>% 
-  layout(xaxis = list(range = c(-10, 1500),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-2.5, 2.5),
                       tickfont = list(size = 8),
@@ -335,13 +339,13 @@ p_L_Yh2 <- plot_ly() %>%
             mode = "lines",
             line = list(color = "black"),
             name = "(L/Y)<sub>h2</sub>") %>% 
-  add_trace(x = 0:(nrow(d1)-3),
+  add_trace(x = 0:(nrow(d3)-3),
             y = 0,
             type = "scatter",
             mode = "lines",
             name = "Baseline",
             line = list(color = "grey")) %>% 
-  layout(xaxis = list(range = c(-10, 1500),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-0.01, 0.4), 
                       tickfont = list(size = 8)),
@@ -368,5 +372,23 @@ sub_plots
 
 # orca(
 #   sub_plots,
-#   file = "R/plots/figure3.pdf"
+#   file = "R/plots/figure3_alternative.pdf"
+# )
+
+sub_plots_smaller <- subplot(style(p_u, showlegend = FALSE),
+                     style(p_C, showlegend = FALSE),
+                     style(p_NX, showlegend = FALSE),
+                     p_NIIP,
+                     nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
+  layout(legend = list(x = 0.5,
+                       orientation = "h",
+                       xanchor = "center",
+                       font = list(size = 12))) %>% 
+  config(displayModeBar = F)
+
+sub_plots_smaller
+
+# orca(
+#   sub_plots_smaller,
+#   file = "R/plots/figure3_alternative_smaller.pdf"
 # )
