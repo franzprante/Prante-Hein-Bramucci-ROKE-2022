@@ -17,7 +17,7 @@ u <- list(
   showarrow = FALSE)
 
 gr_Y <- list(
-  text = "gr<sub>Y</sub>",
+  text = "Y&#770;",
   font = list(size = 14),
   xref = "paper",
   yref = "paper",
@@ -252,7 +252,7 @@ sub_plots
 
 # orca(
 #   sub_plots,
-#   file = "R/plots/figure1.jpeg"
+#   file = "R/plots/figure1.pdf"
 # )
 
 sub_plots_smaller <- subplot(style(p_u, showlegend = FALSE),
