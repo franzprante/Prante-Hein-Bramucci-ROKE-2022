@@ -456,20 +456,19 @@ d2 <- data.frame(
 # Crisis
 shock_2 <- sfcr_shock(
   variables = sfcr_set(
-    ws ~ seq(0.55, 0.547, length.out = 30),
-    ws_1 ~ seq(0.3, 0.303, length.out = 30)
+    ws ~ 0.545,
+    ws_1 ~ 0.305
   ),
   start = 1000,
-  end = 1029
+  end = 2500
 )
 
 shock_3 <- sfcr_shock(
   variables = sfcr_set(
     L_Y_ratio_banks ~ 0,
     alpha ~ 0
-    
   ),
-  start = 1030,
+  start = 1009,
   end = 2500
 )
 
@@ -538,7 +537,7 @@ shock_4 <- sfcr_shock(
     ws ~ 0.6,
     ws_1 ~ 0.2
   ),
-  start = 1031,
+  start = 1010,
   end = 2500
 )
 DDL <- sfcr_scenario(
@@ -610,7 +609,7 @@ shock_5 <- sfcr_shock(
     ws ~ 0.5,
     ws_1 ~ 0.25
   ),
-  start = 1031,
+  start = 1010,
   end = 2500
 )
 
