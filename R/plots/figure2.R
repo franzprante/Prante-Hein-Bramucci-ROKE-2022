@@ -17,7 +17,7 @@ u <- list(
   showarrow = FALSE)
 
 gr_Y <- list(
-  text = "gr<sub>Y&#770;</sub>",
+  text = "Y&#770;",
   font = list(size = 14),
   xref = "paper",
   yref = "paper",
@@ -77,7 +77,7 @@ NX_Y <- list(
   showarrow = FALSE)
 
 L_Yh2 <- list(
-  text = "L<sub>h2</sub>/Y<sub>h2</sub>",
+  text = "L<sub>h2</sub>/Y<sub>d</sub><sub>h2</sub>",
   font = list(size = 14),
   xref = "paper",
   yref = "paper",
@@ -364,7 +364,7 @@ sub_plots <- subplot(style(p_u, showlegend = FALSE),
                        font = list(size = 12))) %>% 
   config(displayModeBar = F)
 
-sub_plots_smaller
+sub_plots
 
 # orca(
 #   sub_plots,
