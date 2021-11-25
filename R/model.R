@@ -323,11 +323,6 @@ bl <- sfcr_baseline(
   rhtol = TRUE,
 )
 
-par(mfrow = c(1,1))
-plot(bl$V_glob, type = "l", lty = 14, lwd = 3, col = 2)
-lines(bl$K_glob)
-mtext(latex2exp::TeX("SFC-check: V_{global} vs. K_{global}"))
-
 # Base R figure 1
 layout(matrix(c(1, 2, 3,
                 4, 5, 6,
@@ -410,11 +405,6 @@ DLPD_ELM <- sfcr_scenario(
   periods = 2500
 )
 
-par(mfrow = c(1,1))
-plot(DLPD_ELM$V_glob, type = "l", lty = 14, lwd = 3, col = 2)
-lines(DLPD_ELM$K_glob)
-mtext(latex2exp::TeX("SFC-check: V_{global} vs. K_{global}"))
-
 # Base R figure 2
 layout(matrix(c(1, 2, 3,
                 4, 5, 6,
@@ -493,11 +483,6 @@ crisis <- sfcr_scenario(
   periods = 2500
 )
 
-par(mfrow = c(1,1))
-plot(crisis$V_glob, type = "l", lty = 14, lwd = 3, col = 2)
-lines(crisis$K_glob)
-mtext(latex2exp::TeX("SFC-check: V_{global} vs. K_{global}"))
-
 # Base R figure 3
 layout(matrix(c(1, 2, 3,
                 4, 5, 6,
@@ -566,11 +551,6 @@ DDL <- sfcr_scenario(
   ),
   periods = 2500
 )
-
-par(mfrow = c(1,1))
-plot(DDL$V_glob, type = "l", lty = 14, lwd = 3, col = 2)
-lines(DDL$K_glob)
-mtext(latex2exp::TeX("SFC-check: V_{global} vs. K_{global}"))
 
 # Base R figure 4
 layout(matrix(c(1, 2, 
@@ -644,11 +624,6 @@ ELM <- sfcr_scenario(
   ),
   periods = 2500
 )
-
-par(mfrow = c(1,1))
-plot(ELM$V_glob, type = "l", lty = 14, lwd = 3, col = 2)
-lines(ELM$K_glob)
-mtext(latex2exp::TeX("SFC-check: V_{global} vs. K_{global}"))
 
 # Base R figure 5
 layout(matrix(c(1, 2, 
