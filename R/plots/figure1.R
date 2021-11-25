@@ -198,7 +198,7 @@ p_G <- plot_ly() %>%
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "Foreign economy") %>%
+            name = "External economy") %>%
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(0, 0.35),
@@ -223,7 +223,7 @@ p_NX <- plot_ly() %>%
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "Foreign economy") %>% # NX/Y<sub>x</sub>
+            name = "External economy") %>% # NX/Y<sub>x</sub>
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-5, 5),
