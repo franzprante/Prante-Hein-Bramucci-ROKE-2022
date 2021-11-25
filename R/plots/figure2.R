@@ -283,7 +283,7 @@ p_NX <- plot_ly() %>%
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "Foreign economy") %>% # NX/Y<sub>x</sub>
+            name = "External economy") %>% # NX/Y<sub>x</sub>
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-0.05, 0.05),
@@ -315,7 +315,7 @@ p_NIIP <- plot_ly() %>%
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "Foreign economy") %>% 
+            name = "External economy") %>% 
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-2.5, 2.5),
@@ -369,4 +369,22 @@ sub_plots
 # orca(
 #   sub_plots,
 #   file = "R/plots/figure2.pdf"
+# )
+
+sub_plots_smaller <- subplot(style(p_u, showlegend = FALSE),
+                     style(p_C, showlegend = FALSE),
+                     style(p_L_Yh2, showlegend = FALSE),
+                     p_NX,
+                     nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
+  layout(legend = list(x = 0.5,
+                       orientation = "h",
+                       xanchor = "center",
+                       font = list(size = 12))) %>% 
+  config(displayModeBar = F)
+
+sub_plots_smaller
+
+# orca(
+#   sub_plots_smaller,
+#   file = "R/plots/figure2_smaller.pdf"
 # )
