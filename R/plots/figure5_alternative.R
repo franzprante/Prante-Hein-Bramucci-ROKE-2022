@@ -277,7 +277,7 @@ p_NX <- plot_ly() %>%
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "Foreign economy") %>% # NX/Y<sub>x</sub>
+            name = "External economy") %>% # NX/Y<sub>x</sub>
   layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-0.12, 0.12),
@@ -309,7 +309,7 @@ p_NIIP <- plot_ly() %>%
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "Foreign economy") %>% 
+            name = "External economy") %>% 
   layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-5, 3),
@@ -319,8 +319,36 @@ p_NIIP <- plot_ly() %>%
          showlegend = TRUE,
          hovermode = "compare")
 
+# Deficit
+p_S_g_Y <- plot_ly() %>% 
+  add_trace(x = 0:(nrow(d5)-3),
+            y = 0,
+            type = "scatter",
+            mode = "lines",
+            name = "Baseline",
+            line = list(color = "grey")) %>% 
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$S_g,
+            type = "scatter",
+            mode = "lines",
+            line = list(color = "black"),
+            name = "S_g / Y") %>% 
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$S_gx,
+            type = "scatter",
+            mode = "lines",
+            line = list(color = "red"),
+            name = "S_g / Y") %>% 
+  layout(xaxis = list(range = c(begin, end),
+                      tickfont = list(size = 8)),
+         yaxis = list(range = c(-0.1, 0.02), 
+                      tickfont = list(size = 8)),
+         annotations = S_g_Y,
+         showlegend = TRUE,
+         hovermode = "compare")
+
 sub_plots <- subplot(style(p_u, showlegend = FALSE),
-                     style(p_C, showlegend = FALSE),
+                     style(p_S_g_Y, showlegend = FALSE),
                      style(p_NX, showlegend = FALSE),
                      p_NIIP,
                      nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%

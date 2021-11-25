@@ -665,8 +665,9 @@ d5 <- data.frame(
   L_Yh2 = ELM$L_Y_ratio_h_2,
   NIIP_Y = ELM$NIIP_Y_ratio,
   L_Yh2x = ELM$L_Y_ratio_h_2x,
-  NIIP_Yx = ELM$NIIP_Y_ratiox
-  
+  NIIP_Yx = ELM$NIIP_Y_ratiox,
+  S_g = ELM$S_g / ELM$Y,
+  S_gx = ELM$S_gx / ELM$Yx
 )
 
 save(d1, dbl, d2, d3, d4, d5, file = here::here("R/simulated_series_for_plots"))

@@ -287,7 +287,7 @@ p_NX <- plot_ly() %>%
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "Foreign economy") %>% # NX/Y<sub>x</sub>
+            name = "External economy") %>% # NX/Y<sub>x</sub>
   layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-0.02, 0.02),
@@ -319,7 +319,7 @@ p_NIIP <- plot_ly() %>%
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "Foreign economy") %>% 
+            name = "External economy") %>% 
   layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-2.5, 2.5),
@@ -377,8 +377,8 @@ sub_plots
 
 sub_plots_smaller <- subplot(style(p_u, showlegend = FALSE),
                      style(p_C, showlegend = FALSE),
-                     style(p_NX, showlegend = FALSE),
-                     p_NIIP,
+                     style(p_L_Yh2, showlegend = FALSE),
+                     p_NX,
                      nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
   layout(legend = list(x = 0.5,
                        orientation = "h",

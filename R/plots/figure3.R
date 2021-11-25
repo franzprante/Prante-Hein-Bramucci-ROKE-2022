@@ -283,7 +283,7 @@ p_NX <- plot_ly() %>%
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "Foreign economy") %>% # NX/Y<sub>x</sub>
+            name = "External economy") %>% # NX/Y<sub>x</sub>
   layout(xaxis = list(range = c(-10, 2000),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-0.05, 0.05),
@@ -315,7 +315,7 @@ p_NIIP <- plot_ly() %>%
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
-            name = "Foreign economy") %>% 
+            name = "External economy") %>% 
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-2.5, 2.5),
@@ -329,6 +329,12 @@ p_NIIP <- plot_ly() %>%
 
 # Debt to income ratio
 p_L_Yh2 <- plot_ly() %>% 
+  add_trace(x = 0:(nrow(d3)-1),
+            y = 0.375,
+            type = "scatter",
+            mode = "lines",
+            line = list(color = "grey", dash = "dash"),
+            name = "l") %>% 
   add_trace(x = 0:(nrow(d3)-1),
             y = d3$L_Yh2,
             type = "scatter",
@@ -369,4 +375,23 @@ sub_plots
 # orca(
 #   sub_plots,
 #   file = "R/plots/figure3.pdf"
+# )
+
+
+sub_plots_smaller <- subplot(style(p_u, showlegend = FALSE),
+                     style(p_C, showlegend = FALSE),
+                     style(p_L_Yh2, showlegend = FALSE),
+                     p_NX,
+                     nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
+  layout(legend = list(x = 0.5,
+                       orientation = "h",
+                       xanchor = "center",
+                       font = list(size = 12))) %>% 
+  config(displayModeBar = F)
+
+sub_plots_smaller
+
+# orca(
+#   sub_plots,
+#   file = "R/plots/figure3_smaller.pdf"
 # )
