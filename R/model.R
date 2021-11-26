@@ -551,7 +551,7 @@ d3 <- data.frame(
 # DLPD to DDL
 shock_4 <- sfcr_shock(
   variables = sfcr_set(
-    sigma ~ 1.05
+    sigma ~ 1.08
   ),
   start = 1010,
   end = 2500
