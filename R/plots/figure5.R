@@ -17,7 +17,7 @@ u <- list(
   showarrow = FALSE)
 
 gr_Y <- list(
-  text = "gr<sub>Y&#770;</sub>",
+  text = "Y&#770;",
   font = list(size = 14),
   xref = "paper",
   yref = "paper",
@@ -66,6 +66,30 @@ G_Y <- list(
 
 NX_Y <- list(
   text = "NX/Y",
+  font = list(size = 14),
+  xref = "paper",
+  yref = "paper",
+  yanchor = "bottom",
+  xanchor = "center",
+  align = "center",
+  x = 0.5,
+  y = 0.95,
+  showarrow = FALSE)
+
+S_g_Y <- list(
+  text = "S<sub>g</sub>/Y",
+  font = list(size = 14),
+  xref = "paper",
+  yref = "paper",
+  yanchor = "bottom",
+  xanchor = "center",
+  align = "center",
+  x = 0.5,
+  y = 0.95,
+  showarrow = FALSE)
+
+L_Yh2 <- list(
+  text = "L<sub>h2</sub>/Y<sub>dh2</sub>",
   font = list(size = 14),
   xref = "paper",
   yref = "paper",
@@ -308,13 +332,12 @@ p_NIIP <- plot_ly() %>%
             name = "External economy") %>% 
   layout(xaxis = list(range = c(-10, 2000),
                       tickfont = list(size = 8)),
-         yaxis = list(range = c(-5, 3),
+         yaxis = list(range = c(-6, 6),
                       tickfont = list(size = 8),
                       dtick = 1),
          annotations = NIIP_Y,
          showlegend = TRUE,
          hovermode = "compare")
-
 
 # Deficit
 p_S_g_Y <- plot_ly() %>% 
@@ -334,7 +357,8 @@ p_S_g_Y <- plot_ly() %>%
             y = d5$S_gx,
             type = "scatter",
             mode = "lines",
-            line = list(color = "red"),
+            line = list(color = "red",
+                        dash = "dash"),
             name = "S_g / Y") %>% 
   layout(xaxis = list(range = c(-10, 2000),
                       tickfont = list(size = 8)),
@@ -344,7 +368,43 @@ p_S_g_Y <- plot_ly() %>%
          showlegend = TRUE,
          hovermode = "compare")
 
+# Debt to income ratio
+p_L_Yh2 <- plot_ly() %>% 
+  add_trace(x = 0:(nrow(d5)-1),
+            y = 0.375,
+            type = "scatter",
+            mode = "lines",
+            name = "Max leverage ratio",
+            showlegend = TRUE,
+            line = list(color = "grey", 
+                        dash = "dot")) %>% 
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$L_Yh2,
+            type = "scatter",
+            mode = "lines",
+            showlegend = FALSE,
+            line = list(color = "black"),
+            name = "(L/Y)<sub>h2</sub>") %>% 
+  add_trace(x = 0:(nrow(d5)-3),
+            y = 0,
+            type = "scatter",
+            mode = "lines",
+            name = "Baseline",
+            showlegend = FALSE,
+            line = list(color = "grey")) %>% 
+  layout(xaxis = list(range = c(-10, 2000),
+                      tickfont = list(size = 8)),
+         yaxis = list(range = c(-0.01, 0.4), 
+                      tickfont = list(size = 8)),
+         annotations = L_Yh2,
+         showlegend = FALSE,
+         hovermode = "compare")
+
 sub_plots <- subplot(style(p_u, showlegend = FALSE),
+                     style(p_C, showlegend = FALSE),
+                     p_L_Yh2,
+                     style(p_I, showlegend = FALSE),
+                     style(p_G, showlegend = FALSE),
                      style(p_S_g_Y, showlegend = FALSE),
                      style(p_NX, showlegend = FALSE),
                      p_NIIP,
