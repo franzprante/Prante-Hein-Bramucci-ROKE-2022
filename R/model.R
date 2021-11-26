@@ -355,7 +355,14 @@ d1 <- data.frame(
   G_Y = bl$G_Y_share,
   G_Yx = bl$G_Y_sharex,
   NX_Y = bl$NX_Y_share,
-  NX_Yx = bl$NX_Y_sharex
+  NX_Yx = bl$NX_Y_sharex,
+  # Additional variables
+  NIIP_Y = bl$NIIP_Y_ratio,
+  NIIP_Yx = bl$NIIP_Y_ratiox,
+  L_Yh2 = bl$L_Y_ratio_h_2,
+  L_Yh2x = bl$L_Y_ratio_h_2x,
+  S_g = bl$S_g / bl$Y,
+  S_gx = bl$S_gx / bl$Yx
 )
 
 # Extending the baseline for scenario time range
@@ -378,7 +385,14 @@ dbl <- data.frame(
   G_Y = blext$G_Y_share,
   G_Yx = blext$G_Y_sharex,
   NX_Y = blext$NX_Y_share,
-  NX_Yx = blext$NX_Y_sharex
+  NX_Yx = blext$NX_Y_sharex,
+  # Additional variables
+  NIIP_Y = blext$NIIP_Y_ratio,
+  NIIP_Yx = blext$NIIP_Y_ratiox,
+  L_Yh2 = blext$L_Y_ratio_h_2,
+  L_Yh2x = blext$L_Y_ratio_h_2x,
+  S_g = blext$S_g / blext$Y,
+  S_gx = blext$S_gx / blext$Yx
 )
 
 # Scenarios
@@ -447,10 +461,12 @@ d2 <- data.frame(
   NX_Y = DLPD_ELM$NX_Y_share,
   NX_Yx = DLPD_ELM$NX_Y_sharex,
   # Additional variables
-  L_Yh2 = DLPD_ELM$L_Y_ratio_h_2,
   NIIP_Y = DLPD_ELM$NIIP_Y_ratio,
+  NIIP_Yx = DLPD_ELM$NIIP_Y_ratiox,
+  L_Yh2 = DLPD_ELM$L_Y_ratio_h_2,
   L_Yh2x = DLPD_ELM$L_Y_ratio_h_2x,
-  NIIP_Yx = DLPD_ELM$NIIP_Y_ratiox
+  S_g = DLPD_ELM$S_g / DLPD_ELM$Y,
+  S_gx = DLPD_ELM$S_gx / DLPD_ELM$Yx
 )
 
 # Crisis
@@ -524,18 +540,18 @@ d3 <- data.frame(
   NX_Y = crisis$NX_Y_share,
   NX_Yx = crisis$NX_Y_sharex,
   # Additional variables
-  L_Yh2 = crisis$L_Y_ratio_h_2,
   NIIP_Y = crisis$NIIP_Y_ratio,
+  NIIP_Yx = crisis$NIIP_Y_ratiox,
+  L_Yh2 = crisis$L_Y_ratio_h_2,
   L_Yh2x = crisis$L_Y_ratio_h_2x,
-  NIIP_Yx = crisis$NIIP_Y_ratiox
+  S_g = crisis$S_g / crisis$Y,
+  S_gx = crisis$S_gx / crisis$Yx
 )
 
 # DLPD to DDL
 shock_4 <- sfcr_shock(
   variables = sfcr_set(
-    sigma ~ 1.05,
-    ws ~ 0.6,
-    ws_1 ~ 0.2
+    sigma ~ 1.08
   ),
   start = 1010,
   end = 2500
@@ -590,11 +606,12 @@ d4 <- data.frame(
   NX_Y = DDL$NX_Y_share,
   NX_Yx = DDL$NX_Y_sharex,
   # Additional variables
-  L_Yh2 = DDL$L_Y_ratio_h_2,
   NIIP_Y = DDL$NIIP_Y_ratio,
-  L_Yh2x = DDL$L_Y_ratio_h_2x,
   NIIP_Yx = DDL$NIIP_Y_ratiox,
-  S_g = DDL$S_g / DDL$Y
+  L_Yh2 = DDL$L_Y_ratio_h_2,
+  L_Yh2x = DDL$L_Y_ratio_h_2x,
+  S_g = DDL$S_g / DDL$Y,
+  S_gx = DDL$S_gx / DDL$Yx
 )
 
 # DLPD to ELM
@@ -662,10 +679,10 @@ d5 <- data.frame(
   NX_Y = ELM$NX_Y_share,
   NX_Yx = ELM$NX_Y_sharex,
   # Additional variables
-  L_Yh2 = ELM$L_Y_ratio_h_2,
   NIIP_Y = ELM$NIIP_Y_ratio,
-  L_Yh2x = ELM$L_Y_ratio_h_2x,
   NIIP_Yx = ELM$NIIP_Y_ratiox,
+  L_Yh2 = ELM$L_Y_ratio_h_2,
+  L_Yh2x = ELM$L_Y_ratio_h_2x,
   S_g = ELM$S_g / ELM$Y,
   S_gx = ELM$S_gx / ELM$Yx
 )

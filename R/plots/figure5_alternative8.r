@@ -3,6 +3,10 @@ library(plotly)
 # Load the data
 load(here::here("R/simulated_series_for_plots"))
 
+begin <- 950 #-10
+
+end <- 2000
+
 # Annotations for subplots
 u <- list(
   text = "u",
@@ -76,32 +80,20 @@ NX_Y <- list(
   y = 0.95,
   showarrow = FALSE)
 
-L_Yh2 <- list(
-  text = "L<sub>h2</sub>/Y<sub>d</sub><sub>h2</sub>",
-  font = list(size = 14),
-  xref = "paper",
-  yref = "paper",
-  yanchor = "bottom",
-  xanchor = "center",
-  align = "center",
-  x = 0.5,
-  y = 0.95,
-  showarrow = FALSE)
-
-NIIP_Y <- list(
-  text = "NIIP/Y",
-  font = list(size = 14),
-  xref = "paper",
-  yref = "paper",
-  yanchor = "bottom",
-  xanchor = "center",
-  align = "center",
-  x = 0.5,
-  y = 0.95,
-  showarrow = FALSE)
-
 S_g_Y <- list(
   text = "S<sub>g</sub>/Y",
+  font = list(size = 14),
+  xref = "paper",
+  yref = "paper",
+  yanchor = "bottom",
+  xanchor = "center",
+  align = "center",
+  x = 0.5,
+  y = 0.95,
+  showarrow = FALSE)
+
+L_Yh2 <- list(
+  text = "L<sub>h2</sub>/Y<sub>dh2</sub>",
   font = list(size = 14),
   xref = "paper",
   yref = "paper",
@@ -126,28 +118,28 @@ NIIP_Y <- list(
 
 # Utilization rate
 p_u <- plot_ly() %>% 
-  add_trace(x = 0:(nrow(d3)-3),
+  add_trace(x = 0:(nrow(d5)-3),
             y = tail(d1$u, 1),
             type = "scatter",
             mode = "lines",
             name = "u<sub>baseline</sub>",
             line = list(color = "grey")) %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$u,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$u,
             type = "scatter",
             mode = "lines",
             line = list(color = "black"),
             name = "u") %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$ux,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$ux,
             type = "scatter",
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
             name = "u<sub>x</sub>") %>%
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
-         yaxis = list(range = c(0.55, 0.8),
+         yaxis = list(range = c(0.5, 0.8),
                       tickfont = list(size = 8),
                       dtick = 0.05),
          annotations = u,
@@ -158,34 +150,34 @@ p_u <- plot_ly() %>%
 
 # Growth rate of output
 p_gr_Y <- plot_ly() %>% 
-  # add_trace(x = 0:(nrow(d3)-3),
-  #           y = tail(d3$gr_Y, 1),
+  # add_trace(x = 0:(nrow(d5)-3),
+  #           y = tail(d5$gr_Y, 1),
   #           type = "scatter",
   #           mode = "lines",
   #           line = list(color = "black",
   #                       dash = "dot",
   #                       width = 1),
   #           hoverinfo = "none") %>% 
-  add_trace(x = 0:(nrow(d3)-3),
+  add_trace(x = 0:(nrow(d5)-3),
             y = tail(d1$gr_Y, 1),
             type = "scatter",
             mode = "lines",
             line = list(color = "grey"),
             name = "gr<sub>Y&#770;<sub>baseline</sub></sub>") %>%
-  add_trace(x = 0:(nrow(d3)-3),
-            y = d3$gr_Y[3:nrow(d3)],
+  add_trace(x = 0:(nrow(d5)-3),
+            y = d5$gr_Y[3:nrow(d5)],
             type = "scatter",
             mode = "lines",
             line = list(color = "black"),
             name = "gr<sub>Y&#770;<sub>") %>% 
-  add_trace(x = 0:(nrow(d3)-3),
-            y = d3$gr_Yx[3:nrow(d3)],
+  add_trace(x = 0:(nrow(d5)-3),
+            y = d5$gr_Yx[3:nrow(d5)],
             type = "scatter",
             mode = "lines",
             name = "gr<sub>Y&#770;<sub>x</sub></sub>",
             line = list(color = "red",
                         dash = "dash")) %>%
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(0.014, 0.018),
                       tickfont = list(size = 8)),
@@ -197,28 +189,29 @@ p_gr_Y <- plot_ly() %>%
 
 # Consumption share
 p_C <- plot_ly() %>% 
-  add_trace(x = 0:(nrow(d3)-3),
+  add_trace(x = 0:(nrow(d5)-3),
             y = tail(d1$C_Y, 1),
             type = "scatter",
             mode = "lines",
-            name = "gr<sub>Y<sub>x</sub></sub>",
+            name = "Baseline",
             line = list(color = "grey")) %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$C_Y,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$C_Y,
             type = "scatter",
             mode = "lines",
             line = list(color = "black"),
             name = "C/Y") %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$C_Yx,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$C_Yx,
             type = "scatter",
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
             name = "C/Y<sub>x</sub>") %>%
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
-         yaxis = list(tickfont = list(size = 8)),
+         yaxis = list(range = c(0.5, 0.7),
+                      tickfont = list(size = 8)),
          annotations = C_Y,
          showlegend = TRUE,
          hovermode = "compare")
@@ -226,36 +219,37 @@ p_C <- plot_ly() %>%
 
 # Investment share
 p_I <- plot_ly() %>%
-  # add_trace(x = 0:(nrow(d3)-3),
-  #           y = tail(d3$I_Y, 1),
+  # add_trace(x = 0:(nrow(d5)-3),
+  #           y = tail(d5$I_Y, 1),
   #           type = "scatter",
   #           mode = "lines",
   #           hoverinfo = "none",
   #           line = list(color = "black",
   #                       dash = "dot",
   #                       width = 1)) %>% 
-  add_trace(x = 0:(nrow(d3)-3),
+  add_trace(x = 0:(nrow(d5)-3),
             y = tail(d1$I_Y, 1),
             type = "scatter",
             mode = "lines",
             name = "I/Y<sub>baseline</sub>",
             line = list(color = "grey")) %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$I_Y,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$I_Y,
             type = "scatter",
             mode = "lines",
             line = list(color = "black"),
             name = "I/Y") %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$I_Yx,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$I_Yx,
             type = "scatter",
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
             name = "I/Y<sub>x</sub>") %>%
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
-         yaxis = list(tickfont = list(size = 8)),
+         yaxis = list(range = c(0.17, 0.22),
+                      tickfont = list(size = 8)),
          annotations = I_Y,
          showlegend = TRUE,
          hovermode = "compare")
@@ -264,20 +258,20 @@ p_I <- plot_ly() %>%
 
 # Government share
 p_G <- plot_ly() %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = round(d3$G_Y, digits = 2),
+  add_trace(x = 0:(nrow(d5)-1),
+            y = round(d5$G_Y, digits = 2),
             type = "scatter",
             mode = "lines",
             line = list(color = "black"),
             name = "G/Y") %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = round(d3$G_Yx, digits = 2),
+  add_trace(x = 0:(nrow(d5)-1),
+            y = round(d5$G_Yx, digits = 2),
             type = "scatter",
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
             name = "G/Y<sub>x</sub>") %>%
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(0, 0.3), 
                       tickfont = list(size = 8)),
@@ -289,30 +283,30 @@ p_G <- plot_ly() %>%
 
 # Net export share
 p_NX <- plot_ly() %>% 
-  add_trace(x = 0:(nrow(d3)-3),
+  add_trace(x = 0:(nrow(d5)-3),
             y = tail(d1$NX_Y, 1),
             type = "scatter",
             mode = "lines",
             name = "Baseline",
             line = list(color = "grey")) %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$NX_Y,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$NX_Y,
             type = "scatter",
             mode = "lines",
             line = list(color = "black"),
             name = "Domestic economy") %>% # NX/Y 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$NX_Yx,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$NX_Yx,
             type = "scatter",
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
             name = "External economy") %>% # NX/Y<sub>x</sub>
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
-         yaxis = list(range = c(-0.05, 0.05),
+         yaxis = list(range = c(-0.12, 0.12),
                       tickfont = list(size = 8),
-                      dtick = 0.02),
+                      dtick = 0.05),
          annotations = NX_Y,
          showlegend = TRUE,
          hovermode = "compare")
@@ -321,39 +315,66 @@ p_NX <- plot_ly() %>%
 
 # NIIP share
 p_NIIP <- plot_ly() %>% 
-  add_trace(x = 0:(nrow(d3)-3),
+  add_trace(x = 0:(nrow(d5)-3),
             y = 0,
             type = "scatter",
             mode = "lines",
             name = "Baseline",
             line = list(color = "grey")) %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$NIIP_Y,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$NIIP_Y,
             type = "scatter",
             mode = "lines",
             line = list(color = "black"),
             name = "Domestic economy") %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$NIIP_Yx,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$NIIP_Yx,
             type = "scatter",
             mode = "lines",
             line = list(color = "red",
                         dash = "dash"),
             name = "External economy") %>% 
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
-         yaxis = list(range = c(-3, 3),
+         yaxis = list(range = c(-6, 6),
                       tickfont = list(size = 8),
                       dtick = 1),
          annotations = NIIP_Y,
          showlegend = TRUE,
          hovermode = "compare")
 
-# p_NIIP
+# Deficit
+p_S_g_Y <- plot_ly() %>% 
+  add_trace(x = 0:(nrow(d5)-3),
+            y = 0,
+            type = "scatter",
+            mode = "lines",
+            name = "Baseline",
+            line = list(color = "grey")) %>% 
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$S_g,
+            type = "scatter",
+            mode = "lines",
+            line = list(color = "black"),
+            name = "S_g / Y") %>% 
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$S_gx,
+            type = "scatter",
+            mode = "lines",
+            line = list(color = "red",
+                        dash = "dash"),
+            name = "S_g / Y") %>% 
+  layout(xaxis = list(range = c(begin, end),
+                      tickfont = list(size = 8)),
+         yaxis = list(range = c(-0.1, 0.02), 
+                      tickfont = list(size = 8)),
+         annotations = S_g_Y,
+         showlegend = TRUE,
+         hovermode = "compare")
 
 # Debt to income ratio
 p_L_Yh2 <- plot_ly() %>% 
-  add_trace(x = 0:(nrow(d3)-1),
+  add_trace(x = 0:(nrow(d5)-1),
             y = 0.375,
             type = "scatter",
             mode = "lines",
@@ -361,51 +382,26 @@ p_L_Yh2 <- plot_ly() %>%
             showlegend = TRUE,
             line = list(color = "grey", 
                         dash = "dot")) %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$L_Yh2,
+  add_trace(x = 0:(nrow(d5)-1),
+            y = d5$L_Yh2,
             type = "scatter",
             mode = "lines",
             showlegend = FALSE,
             line = list(color = "black"),
             name = "(L/Y)<sub>h2</sub>") %>% 
-  add_trace(x = 0:(nrow(d3)-3),
+  add_trace(x = 0:(nrow(d5)-3),
             y = 0,
             type = "scatter",
             mode = "lines",
             name = "Baseline",
             showlegend = FALSE,
             line = list(color = "grey")) %>% 
-  layout(xaxis = list(range = c(-10, 2000),
+  layout(xaxis = list(range = c(begin, end),
                       tickfont = list(size = 8)),
          yaxis = list(range = c(-0.01, 0.4), 
                       tickfont = list(size = 8)),
          annotations = L_Yh2,
          showlegend = FALSE,
-         hovermode = "compare")
-
-#p_L_Yh2
-
-# Deficit
-p_S_g_Y <- plot_ly() %>% 
-  add_trace(x = 0:(nrow(d2)-1),
-            y = d3$S_g,
-            type = "scatter",
-            mode = "lines",
-            line = list(color = "black"),
-            name = "S<sub>g</sub>/Y") %>% 
-  add_trace(x = 0:(nrow(d3)-1),
-            y = d3$S_gx,
-            type = "scatter",
-            mode = "lines",
-            line = list(color = "red",
-                        dash = "dash"),
-            name = "S<sub>g</sub>/Yx") %>% 
-  layout(xaxis = list(range = c(-10, 2000),
-                      tickfont = list(size = 8)),
-         yaxis = list(range = c(-0.05, 0.05), 
-                      tickfont = list(size = 8)),
-         annotations = S_g_Y,
-         showlegend = TRUE,
          hovermode = "compare")
 
 sub_plots <- subplot(style(p_u, showlegend = FALSE),
@@ -427,23 +423,5 @@ sub_plots
 
 # orca(
 #   sub_plots,
-#   file = "R/plots/figure3.pdf"
-# )
-
-# sub_plots_smaller <- subplot(style(p_u, showlegend = FALSE),
-#                      style(p_C, showlegend = FALSE),
-#                      style(p_L_Yh2, showlegend = FALSE),
-#                      p_NX,
-#                      nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
-#   layout(legend = list(x = 0.5,
-#                        orientation = "h",
-#                        xanchor = "center",
-#                        font = list(size = 12))) %>% 
-#   config(displayModeBar = F)
-# 
-# sub_plots_smaller
-
-# orca(
-#   sub_plots,
-#   file = "R/plots/figure3_smaller.pdf"
+#   file = "R/plots/figure5_alternative8.pdf"
 # )
