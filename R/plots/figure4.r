@@ -377,10 +377,10 @@ p_S_g_Y <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             line = list(color = "black"),
-            name = "S_g / Y") %>% 
+            name = "S<sub>g</sub> / Y") %>% 
   layout(xaxis = list(range = c(-10, 2000),
                       tickfont = list(size = 8)),
-         yaxis = list(range = c(-0.03, 0.005), 
+         yaxis = list(range = c(-0.05, 0.005), 
                       tickfont = list(size = 8)),
          annotations = S_g_Y,
          showlegend = TRUE,
@@ -405,3 +405,4 @@ sub_plots
 #   sub_plots,
 #   file = "R/plots/figure4.pdf"
 # )
+
