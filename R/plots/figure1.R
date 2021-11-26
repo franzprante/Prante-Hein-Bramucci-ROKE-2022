@@ -341,13 +341,13 @@ p_L_Yh2 <- plot_ly() %>%
 #p_L_Yh2
 
 sub_plots <- subplot(style(p_u, showlegend = FALSE),
-                     style(p_C, showlegend = FALSE),
                      style(p_L_Yh2, showlegend = FALSE),
+                     style(p_S_g_Y, showlegend = FALSE),
+                     p_NIIP,
+                     style(p_C, showlegend = FALSE),
                      style(p_I, showlegend = FALSE),
                      style(p_G, showlegend = FALSE),
-                     style(p_S_g_Y, showlegend = FALSE),
                      style(p_NX, showlegend = FALSE),
-                     p_NIIP,
                      nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
   layout(legend = list(x = 0.5,
                        orientation = "h",
