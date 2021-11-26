@@ -100,6 +100,30 @@ NIIP_Y <- list(
   y = 0.95,
   showarrow = FALSE)
 
+S_g_Y <- list(
+  text = "S<sub>g</sub>/Y",
+  font = list(size = 14),
+  xref = "paper",
+  yref = "paper",
+  yanchor = "bottom",
+  xanchor = "center",
+  align = "center",
+  x = 0.5,
+  y = 0.95,
+  showarrow = FALSE)
+
+NIIP_Y <- list(
+  text = "NIIP/Y",
+  font = list(size = 14),
+  xref = "paper",
+  yref = "paper",
+  yanchor = "bottom",
+  xanchor = "center",
+  align = "center",
+  x = 0.5,
+  y = 0.95,
+  showarrow = FALSE)
+
 # Utilization rate
 p_u <- plot_ly() %>% 
   add_trace(x = 0:(nrow(d1)-3),
@@ -177,7 +201,7 @@ p_C <- plot_ly() %>%
             y = tail(d1$C_Y, 1),
             type = "scatter",
             mode = "lines",
-            name = "gr<sub>Y<sub>x</sub></sub>",
+            name = "C<sub>baseline</sub>",
             line = list(color = "grey")) %>% 
   add_trace(x = 0:(nrow(d2)-1),
             y = d2$C_Y,
@@ -329,32 +353,67 @@ p_NIIP <- plot_ly() %>%
 
 # Debt to income ratio
 p_L_Yh2 <- plot_ly() %>% 
+  add_trace(x = 0:(nrow(d3)-1),
+            y = 0.375,
+            type = "scatter",
+            mode = "lines",
+            name = "Max leverage ratio",
+            showlegend = TRUE,
+            line = list(color = "grey", 
+                        dash = "dot")) %>% 
   add_trace(x = 0:(nrow(d2)-1),
             y = d2$L_Yh2,
             type = "scatter",
             mode = "lines",
-            line = list(color = "black"),
-            name = "(L/Y)<sub>h2</sub>") %>% 
-  add_trace(x = 0:(nrow(d1)-3),
+            showlegend = FALSE,
+            #name = "(L/Y)<sub>h2</sub>"
+            line = list(color = "black")) %>% 
+  add_trace(x = 0:(nrow(d2)-3),
             y = 0,
             type = "scatter",
             mode = "lines",
-            name = "Baseline",
+            #name = "Baseline",
+            showlegend = FALSE,
             line = list(color = "grey")) %>% 
   layout(xaxis = list(range = c(-10, 1500),
                       tickfont = list(size = 8)),
-         yaxis = list(range = c(-0.01, 0.4), 
+         yaxis = list(range = c(-0.015, 0.5), 
                       tickfont = list(size = 8)),
          annotations = L_Yh2,
-         showlegend = TRUE,
+         showlegend = FALSE,
          hovermode = "compare")
 
 #p_L_Yh2
 
+# Deficit
+p_S_g_Y <- plot_ly() %>% 
+  add_trace(x = 0:(nrow(d2)-1),
+            y = d2$S_g,
+            type = "scatter",
+            mode = "lines",
+            line = list(color = "black"),
+            name = "S<sub>g</sub>/Y") %>% 
+  add_trace(x = 0:(nrow(d2)-1),
+            y = d2$S_gx,
+            type = "scatter",
+            mode = "lines",
+            line = list(color = "red",
+                        dash = "dash"),
+            name = "S<sub>g</sub>/Yx") %>% 
+  layout(xaxis = list(range = c(-10, 1500),
+                      tickfont = list(size = 8)),
+         yaxis = list(range = c(-0.05, 0.05), 
+                      tickfont = list(size = 8)),
+         annotations = S_g_Y,
+         showlegend = TRUE,
+         hovermode = "compare")
+
 sub_plots <- subplot(style(p_u, showlegend = FALSE),
                      style(p_C, showlegend = FALSE),
-                     style(p_L_Yh2, showlegend = FALSE),
+                     p_L_Yh2,
                      style(p_I, showlegend = FALSE),
+                     style(p_G, showlegend = FALSE),
+                     style(p_S_g_Y, showlegend = FALSE),
                      style(p_NX, showlegend = FALSE),
                      p_NIIP,
                      nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
@@ -371,18 +430,18 @@ sub_plots
 #   file = "R/plots/figure2.pdf"
 # )
 
-sub_plots_smaller <- subplot(style(p_u, showlegend = FALSE),
-                     style(p_C, showlegend = FALSE),
-                     style(p_L_Yh2, showlegend = FALSE),
-                     p_NX,
-                     nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
-  layout(legend = list(x = 0.5,
-                       orientation = "h",
-                       xanchor = "center",
-                       font = list(size = 12))) %>% 
-  config(displayModeBar = F)
-
-sub_plots_smaller
+# sub_plots_smaller <- subplot(style(p_u, showlegend = FALSE),
+#                      style(p_C, showlegend = FALSE),
+#                      style(p_L_Yh2, showlegend = FALSE),
+#                      p_NX,
+#                      nrows = 2, margin = 0.045, titleY = T, titleX = T) %>%
+#   layout(legend = list(x = 0.5,
+#                        orientation = "h",
+#                        xanchor = "center",
+#                        font = list(size = 12))) %>% 
+#   config(displayModeBar = F)
+# 
+# sub_plots_smaller
 
 # orca(
 #   sub_plots_smaller,
