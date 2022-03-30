@@ -1,7 +1,5 @@
 library(sfcr)
 # Please ensure that all dependencies of the SFCR package are installed in a compatible version (see https://github.com/joaomacalos/sfcr/blob/main/DESCRIPTION).
-source(here::here("R/simplot.R"))
-#TODO Delete the above line and the file "simplot.R" when Plotly figures are done.
 
 # Model equations
 
@@ -323,25 +321,6 @@ bl <- sfcr_baseline(
   rhtol = TRUE,
 )
 
-# Base R figure 1
-layout(matrix(c(1, 2, 3,
-                4, 5, 6,
-                7, 7, 7), nrow=3, byrow=TRUE), heights = c(0.45,0.45,0.1))
-par(mar=c(3,2,3,2))
-simplot(var = "u", scen = bl, tc = T)
-hr <- 0.0163
-simplot(var = "gr_Y", tex = "Growth rate of Y", scen = bl, start = 10, tc = T, autscal = F, h = hr)
-simplot(var = "C_Y_share", scen = bl, tc = T, tex = "C / Y")
-simplot(var = "I_Y_share", scen = bl, tc = T, tex = "I / Y")
-simplot(var = "G_Y_share", scen = bl, tc = T, tex = "G / Y")
-simplot(var = "NX_Y_share", scen = bl, tc = T, h = 0, tex = "NX / Y")
-par(mar=c(0,0,0,0)) 
-plot(1, type = "n", axes=F, xlab="", ylab="") 
-legend("center", 
-       legend=c("Domestic economy",
-                "External economy"),
-       col=c("black", "red", "grey"), lty = c(1,3), horiz = T, lwd = 2)
-
 # Dataframe for figure 1
 d1 <- data.frame(
   u = bl$u, 
@@ -419,33 +398,6 @@ DLPD_ELM <- sfcr_scenario(
   periods = 2500
 )
 
-# Base R figure 2
-layout(matrix(c(1, 2, 3,
-                4, 5, 6,
-                7, 7, 7), nrow=3, byrow=TRUE), heights = c(0.45,0.45,0.1))
-par(mar=c(3,2,3,2))
-simplot(var = "u", scen = DLPD_ELM, tc = T)
-lines(blext$u, col = "grey", lwd = 3)
-plot(DLPD_ELM$gr_Y, type = "l", ylim = c(0.016,0.018), lwd = 3)
-lines(DLPD_ELM$gr_Yx, col = "red", lwd = 3, lty = 3)
-lines(blext$gr_Yx, col = "grey", lwd = 3)
-mtext("Growth Y")
-simplot("L_Y_ratio_h_2", scen = DLPD_ELM, tex = "debt / income non-rich", end = 2500, tc = T)
-lines(blext$L_Y_ratio_h_2, col = "grey", lwd = 3)
-simplot(var = "C_Y_share", scen = DLPD_ELM, tc = T, tex = "C / Y")
-lines(blext$C_Y_share, col = "grey", lwd = 3)
-simplot(var = "NX_Y_share", scen = DLPD_ELM, tc = T, h = 0, tex = "NX / Y")
-lines(blext$NX_Y_share, col = "grey", lwd = 3)
-simplot("NIIP_Y_ratio", scen = DLPD_ELM, tc =T, h = 0, tex = "NIIP / Y")
-lines(blext$NIIP_Y_ratio, col = "grey", lwd = 3)
-par(mar=c(0,0,0,0)) 
-plot(1, type = "n", axes=F, xlab="", ylab="") 
-legend("center", 
-       legend=c("Domestic economy",
-                "External economy",
-                "Baseline"),
-       col=c("black", "red", "grey"), lty = c(1,3), horiz = T, lwd = 2)
-
 # Dataframe for figure 2
 d2 <- data.frame(
   u = DLPD_ELM$u, 
@@ -498,33 +450,6 @@ crisis <- sfcr_scenario(
   periods = 2500
 )
 
-# Base R figure 3
-layout(matrix(c(1, 2, 3,
-                4, 5, 6,
-                7, 7, 7), nrow=3, byrow=TRUE), heights = c(0.45,0.45,0.1))
-par(mar=c(3,2,3,2))
-simplot(var = "u", scen = crisis, tc = T)
-lines(blext$u, col = "grey", lwd = 3)
-plot(crisis$gr_Y, type = "l", ylim = c(0.014,0.018), lwd = 3)
-lines(crisis$gr_Yx, col = "red", lwd = 3, lty = 3)
-lines(blext$gr_Yx, col = "grey", lwd = 3)
-mtext("Growth Y")
-simplot("L_Y_ratio_h_2", scen = crisis, tex = "debt / income non-rich", end = 2500, tc = T)
-lines(blext$L_Y_ratio_h_2, col = "grey", lwd = 3)
-simplot(var = "C_Y_share", scen = crisis, tc = T, tex = "C / Y")
-lines(blext$C_Y_share, col = "grey", lwd = 3)
-simplot(var = "NX_Y_share", scen = crisis, tc = T, h = 0, tex = "NX / Y")
-lines(blext$NX_Y_share, col = "grey", lwd = 3)
-simplot("NIIP_Y_ratio", scen = crisis, tc =T, h = 0, tex = "NIIP / Y")
-lines(blext$NIIP_Y_ratio, col = "grey", lwd = 3)
-par(mar=c(0,0,0,0)) 
-plot(1, type = "n", axes=F, xlab="", ylab="") 
-legend("center", 
-       legend=c("Domestic economy",
-                "External economy",
-                "Baseline"),
-       col=c("black", "red", "grey"), lty = c(1,3), horiz = T, lwd = 2)
-
 # Dataframe for figure 3
 d3 <- data.frame(
   u = crisis$u, 
@@ -566,30 +491,6 @@ DDL <- sfcr_scenario(
   ),
   periods = 2500
 )
-
-# Base R figure 4
-layout(matrix(c(1, 2, 
-                3, 4,
-                5, 5), nrow=3, byrow=TRUE), heights = c(0.45,0.45,0.1))
-par(mar=c(3,2,3,2))
-simplot(var = "u", scen = DDL, tc = T)
-lines(blext$u, col = "grey", lwd = 3)
-plot(DDL$gr_Y, type = "l", ylim = c(0.01,0.018), lwd = 3)
-lines(DDL$gr_Yx, col = "red", lwd = 3, lty = 3)
-lines(blext$gr_Yx, col = "grey", lwd = 3)
-mtext("Growth Y")
-plot(DDL$S_g / DDL$Y, type = "l", lwd = 3, ylab = "", xlab = "")
-abline(h = 0 ,lty = 2)
-mtext(latex2exp::TeX("S_g / Y"))
-simplot(var = "NX_Y_share", scen = DDL, tc = T, h = 0, tex = "NX / Y")
-lines(blext$NX_Y_share, col = "grey", lwd = 3)
-par(mar=c(0,0,0,0)) 
-plot(1, type = "n", axes=F, xlab="", ylab="") 
-legend("center", 
-       legend=c("Domestic economy",
-                "External economy",
-                "Baseline"),
-       col=c("black", "red", "grey"), lty = c(1,3), horiz = T, lwd = 2)
 
 # Dataframe for figure 4
 d4 <- data.frame(
@@ -640,29 +541,6 @@ ELM <- sfcr_scenario(
   ),
   periods = 2500
 )
-
-# Base R figure 5
-layout(matrix(c(1, 2, 
-                3, 4,
-                5, 5), nrow=3, byrow=TRUE), heights = c(0.45,0.45,0.1))
-par(mar=c(3,2,3,2))
-simplot(var = "u", scen = ELM, tc = T)
-lines(blext$u, col = "grey", lwd = 3)
-plot(ELM$gr_Y, type = "l", ylim = c(0.01,0.018), lwd = 3)
-lines(ELM$gr_Yx, col = "red", lwd = 3, lty = 3)
-lines(blext$gr_Yx, col = "grey", lwd = 3)
-mtext("Growth Y")
-simplot(var = "NX_Y_share", scen = ELM, tc = T, h = 0, tex = "NX / Y")
-lines(blext$NX_Y_share, col = "grey", lwd = 3)
-simplot("NIIP_Y_ratio", scen = ELM, tc =T, h = 0, tex = "NIIP / Y")
-lines(blext$NIIP_Y_ratio, col = "grey", lwd = 3)
-par(mar=c(0,0,0,0)) 
-plot(1, type = "n", axes=F, xlab="", ylab="") 
-legend("center", 
-       legend=c("Domestic economy",
-                "External economy",
-                "Baseline"),
-       col=c("black", "red", "grey"), lty = c(1,3), horiz = T, lwd = 2)
 
 # Dataframe for figure 5
 d5 <- data.frame(
