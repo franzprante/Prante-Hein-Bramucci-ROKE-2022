@@ -374,6 +374,8 @@ dbl <- data.frame(
   S_gx = blext$S_gx / blext$Yx
 )
 
+round(blext$gr_Y[nrow(blext)],4) # steady-state growth rate
+
 # Scenarios
 
 # DLPD and ELM before crisis
@@ -473,6 +475,9 @@ d3 <- data.frame(
   S_gx = crisis$S_gx / crisis$Yx
 )
 
+round(crisis$gr_Y[nrow(crisis)],4) # steady-state growth rate
+
+
 # DLPD to DDL
 shock_4 <- sfcr_shock(
   variables = sfcr_set(
@@ -514,6 +519,7 @@ d4 <- data.frame(
   S_g = DDL$S_g / DDL$Y,
   S_gx = DDL$S_gx / DDL$Yx
 )
+round(DDL$gr_Y[nrow(DDL)],4) # steady-state growth rate
 
 # DLPD to ELM
 shock_5 <- sfcr_shock(
@@ -566,3 +572,62 @@ d5 <- data.frame(
 )
 
 save(d1, dbl, d2, d3, d4, d5, file = here::here("R/simulated_series_for_plots"))
+round(ELM$gr_Y[nrow(ELM)],4) # steady-state growth rate
+
+######################################################
+## Additional scenario for follow-up working paper
+# More equality and fiscal expansion in both countries
+# DLPD to ...?
+shock_new_scen <- sfcr_shock(
+  variables = sfcr_set(
+    sigma ~ 1.03, # Fiscal expansion in domestic economy
+    sigmax ~ 1.03, # Fiscal expansion in external economy
+    ws_1 ~ 0.18, # More wage equality in domestic economy
+    ws_1x ~ 0.18,# More wage equality in external economy
+    ws ~ 0.62, # Higher wage share in domestic economy
+    wsx ~ 0.62, # Higher wage share in external economy
+    a_a ~ 0.016, # Higher investment
+    a_ax ~ 0.016, # Higher investment
+    a_Y ~ 0.017, # Higher investment
+    a_Yx ~ 0.017 # Higher investment
+  ),
+  start = 1010, # ??????? Okay timing? Also try the timing of the figure 5 shock
+  end = 2500
+)
+
+new_scen <- sfcr_scenario(
+  baseline = bl,
+  scenario = list(
+    shock_1, # ‘Pre-crisis financialization’
+    shock_2, # Small additional distributional change -> Crisis
+    shock_3, # Within crisis ‘prudence’ shocks
+    shock_new_scen # New shock
+  ),
+  periods = 2500
+)
+
+# Dataframe for figure
+d_new_scen <- data.frame(
+  u = new_scen$u, 
+  ux = new_scen$ux, 
+  gr_Y = new_scen$gr_Y, 
+  gr_Yx = new_scen$gr_Yx,
+  C_Y = new_scen$C_Y_share,
+  C_Yx = new_scen$C_Y_sharex,
+  I_Y = new_scen$I_Y_share,
+  I_Yx = new_scen$I_Y_sharex,
+  G_Y = new_scen$G_Y_share,
+  G_Yx = new_scen$G_Y_sharex,
+  NX_Y = new_scen$NX_Y_share,
+  NX_Yx = new_scen$NX_Y_sharex,
+  # Additional variables
+  NIIP_Y = new_scen$NIIP_Y_ratio,
+  NIIP_Yx = new_scen$NIIP_Y_ratiox,
+  L_Yh2 = new_scen$L_Y_ratio_h_2,
+  L_Yh2x = new_scen$L_Y_ratio_h_2x,
+  S_g = new_scen$S_g / new_scen$Y,
+  S_gx = new_scen$S_gx / new_scen$Yx
+)
+round(new_scen$gr_Y[nrow(new_scen)],4) # steady-state growth rate
+
+save(d1, dbl, d2, d3, d4, d5, d_new_scen, file = here::here("R/simulated_series_for_plots_follow_up_paper"))
