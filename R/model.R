@@ -163,6 +163,14 @@ eqs <- sfcr_set(
   gr_NX ~ (NX - NX[-1]) / NX[-1],
   gr_K ~ (K - K[-1]) / K[-1],
   
+  # Debt-to-income ratio
+  # Government
+  B_Y_ratio_g ~ V_g / Y,
+  B_Y_ratio_gx ~ V_gx / Yx,
+  # Firms
+  B_Y_ratio_f ~ V_f_fin / P_f,
+  B_Y_ratio_fx ~ V_f_finx / P_fx,
+  
   # Auxiliary calculations external economy
   # Objects for SFC-Checks
   sum_Sx ~ S_h_1x + S_h_2x + S_fx + S_gx + CA,
@@ -278,6 +286,8 @@ initial <- sfcr_set(
   K ~ 40,
   V_f ~ 40,
   V ~ 40,
+  B_Y_ratio_g ~ 0,
+  B_Y_ratio_f ~ 0,
   
   # External economy
   c_0_1x ~ 0.2,
@@ -305,7 +315,9 @@ initial <- sfcr_set(
   V_finx ~ 0,
   Kx ~ 40,
   V_fx ~ 40,
-  Vx ~ 40
+  Vx ~ 40,
+  B_Y_ratio_gx ~ 0,
+  B_Y_ratio_fx ~ 0
 )
 
 bl <- sfcr_baseline(
@@ -626,7 +638,12 @@ d_new_scen <- data.frame(
   L_Yh2 = new_scen$L_Y_ratio_h_2,
   L_Yh2x = new_scen$L_Y_ratio_h_2x,
   S_g = new_scen$S_g / new_scen$Y,
-  S_gx = new_scen$S_gx / new_scen$Yx
+  S_gx = new_scen$S_gx / new_scen$Yx,
+  # New
+  B_Y_ratio_g = new_scen$B_Y_ratio_g,
+  B_Y_ratio_gx = new_scen$B_Y_ratio_gx,
+  B_Y_ratio_f = new_scen$B_Y_ratio_f,
+  B_Y_ratio_fx = new_scen$B_Y_ratio_fx
 )
 round(new_scen$gr_Y[nrow(new_scen)],4) # steady-state growth rate
 
