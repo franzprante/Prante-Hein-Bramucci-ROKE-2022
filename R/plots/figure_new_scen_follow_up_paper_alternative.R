@@ -5,7 +5,7 @@ load(here::here("R/simulated_series_for_plots_follow_up_paper"))
 
 # Annotations for subplots
 u <- list(
-  text = "DLPD                 u                  DDL",
+  text = "DLPD                 u                  GIB",
   font = list(size = 12),
   xref = "paper",
   yref = "paper",
@@ -17,7 +17,7 @@ u <- list(
   showarrow = FALSE)
 
 C_Y <- list(
-  text = "DLPD                 C/Y                  DDL",
+  text = "DLPD                 C/Y                  GIB",
   font = list(size = 12),
   xref = "paper",
   yref = "paper",
