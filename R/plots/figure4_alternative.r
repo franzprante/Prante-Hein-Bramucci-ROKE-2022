@@ -154,13 +154,14 @@ p_u_after <- plot_ly() %>%
                       tickfont = list(size = 7)),
          yaxis = list(range = c(0.5, 0.8),
                       tickfont = list(size = 7),
+                      showticklabels = FALSE,
                       dtick = 0.05),
          showlegend = TRUE,
          hovermode = "compare")
 
 sub_plots_p_u <- subplot(style(p_u_before, showlegend = FALSE),
                          p_u_after,
-                         nrows = 1, margin = 0.03, titleY = T, titleX = T) %>% 
+                         nrows = 1, margin = 0.00, titleY = T, titleX = T) %>% 
   layout(annotations = u)
 
 # Consumption share
@@ -215,13 +216,14 @@ p_C_after <- plot_ly() %>%
                       dtick = 200,
                       tickfont = list(size = 7)),
          yaxis = list(range = c(0.55, 0.7),
+                      showticklabels = FALSE,
                       tickfont = list(size = 7)),
          showlegend = TRUE,
          hovermode = "compare")
 
 sub_plots_p_C <- subplot(style(p_C_before, showlegend = FALSE),
                          p_C_after,
-                         nrows = 1, margin = 0.03, titleY = T, titleX = T) %>% 
+                         nrows = 1, margin = 0.00, titleY = T, titleX = T) %>% 
   layout(annotations = C_Y)
 
 # Investment share
@@ -277,13 +279,14 @@ p_I_after <- plot_ly() %>%
                       dtick = 200,
                       tickfont = list(size = 7)),
          yaxis = list(range = c(0.17, 0.22),
+                      showticklabels = FALSE,
                       tickfont = list(size = 7)),
          showlegend = TRUE,
          hovermode = "compare")
 
 sub_plots_p_I <- subplot(style(p_I_before, showlegend = FALSE),
                          p_I_after,
-                         nrows = 1, margin = 0.03, titleY = T, titleX = T) %>% 
+                         nrows = 1, margin = 0.00, titleY = T, titleX = T) %>% 
   layout(annotations = I_Y)
 
 # Government share
@@ -325,14 +328,15 @@ p_G_after <- plot_ly() %>%
   layout(xaxis = list(range = c(945, 2000),
                       dtick = 200,
                       tickfont = list(size = 7)),
-         yaxis = list(range = c(0.15, 0.25), 
+         yaxis = list(range = c(0.15, 0.25),
+                      showticklabels = FALSE,
                       tickfont = list(size = 7)),
          showlegend = TRUE,
          hovermode = "compare")
 
 sub_plots_p_G <- subplot(style(p_G_before, showlegend = FALSE),
                          p_G_after,
-                         nrows = 1, margin = 0.03, titleY = T, titleX = T) %>% 
+                         nrows = 1, margin = 0.00, titleY = T, titleX = T) %>% 
   layout(annotations = G_Y)
 
 # Net export share
@@ -388,6 +392,7 @@ p_NX_after <- plot_ly() %>%
                       dtick = 200,
                       tickfont = list(size = 7)),
          yaxis = list(range = c(-0.05, 0.05),
+                      showticklabels = FALSE,
                       tickfont = list(size = 7),
                       dtick = 0.05),
          showlegend = TRUE,
@@ -395,7 +400,7 @@ p_NX_after <- plot_ly() %>%
 
 sub_plots_p_NX <- subplot(style(p_NX_before, showlegend = FALSE),
                           p_NX_after,
-                          nrows = 1, margin = 0.03, titleY = T, titleX = T) %>% 
+                          nrows = 1, margin = 0.00, titleY = T, titleX = T) %>% 
   layout(annotations = NX_Y)
 
 # NIIP share
@@ -451,6 +456,7 @@ p_NIIP_after <- plot_ly() %>%
                       dtick = 200,
                       tickfont = list(size = 7)),
          yaxis = list(range = c(-3, 3),
+                      showticklabels = FALSE,
                       tickfont = list(size = 7),
                       dtick = 1),
          showlegend = TRUE,
@@ -458,7 +464,7 @@ p_NIIP_after <- plot_ly() %>%
 
 sub_plots_p_NIIP <- subplot(style(p_NIIP_before, showlegend = FALSE),
                             p_NIIP_after,
-                            nrows = 1, margin = 0.03, titleY = T, titleX = T) %>% 
+                            nrows = 1, margin = 0.00, titleY = T, titleX = T) %>% 
   layout(annotations = NIIP_Y)
 
 # Deficit
@@ -512,14 +518,15 @@ p_S_g_Y_after <- plot_ly() %>%
   layout(xaxis = list(range = c(945, 2000),
                       dtick = 200,
                       tickfont = list(size = 7)),
-         yaxis = list(range = c(-0.1, 0.02), 
+         yaxis = list(range = c(-0.1, 0.02),
+                      showticklabels = FALSE,
                       tickfont = list(size = 7)),
          showlegend = TRUE,
          hovermode = "compare")
 
 sub_plots_p_S_g_Y <- subplot(style(p_S_g_Y_before, showlegend = FALSE),
                              p_S_g_Y_after,
-                             nrows = 1, margin = 0.03, titleY = T, titleX = T) %>% 
+                             nrows = 1, margin = 0.00, titleY = T, titleX = T) %>% 
   layout(annotations = S_g_Y)
 
 # Debt to income ratio
@@ -579,14 +586,15 @@ p_L_Yh2_after <- plot_ly() %>%
   layout(xaxis = list(range = c(945, 2000),
                       dtick = 200,
                       tickfont = list(size = 7)),
-         yaxis = list(range = c(-0.01, 0.4), 
+         yaxis = list(range = c(-0.01, 0.4),
+                      showticklabels = FALSE,
                       tickfont = list(size = 7)),
          showlegend = FALSE,
          hovermode = "compare")
 
 sub_plots_p_L_Yh2 <- subplot(style(p_L_Yh2_before, showlegend = FALSE),
                              p_L_Yh2_after,
-                             nrows = 1, margin = 0.03, titleY = T, titleX = T) %>% 
+                             nrows = 1, margin = 0.00, titleY = T, titleX = T) %>% 
   layout(annotations = L_Yh2)
 
 sub_plots <- subplot(style(sub_plots_p_u, showlegend = FALSE),
