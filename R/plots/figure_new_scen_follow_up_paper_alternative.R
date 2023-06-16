@@ -617,7 +617,7 @@ sub_plots <- subplot(style(sub_plots_p_u, showlegend = FALSE),
 
 sub_plots
 
-orca(
- sub_plots,
- file = "R/plots/figure_new_scenario.pdf"
-)
+# orca(
+#  sub_plots,
+#  file = "R/plots/figure_new_scenario.pdf"
+# )
