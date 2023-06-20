@@ -3,6 +3,8 @@ library(plotly)
 # Load the data
 load(here::here("R/simulated_series_for_plots_follow_up_paper"))
 
+t <- list(family = "cambria")
+
 # Annotations for subplots
 u <- list(
   text = "DLPD                 u                  ELM",
@@ -107,7 +109,7 @@ p_u_before <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "u<sub>baseline</sub>",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 1:950,#0:(nrow(d5)-1),
             y = d5$u[1:950],
             type = "scatter",
@@ -118,7 +120,7 @@ p_u_before <- plot_ly() %>%
             y = d5$ux[1:950],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "u<sub>x</sub>") %>%
   layout(xaxis = list(range = c(-10, 950),
@@ -135,7 +137,7 @@ p_u_after <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "u<sub>baseline</sub>",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 950:2000,#0:(nrow(d5)-1),
             y = d5$u[950:2000],
             type = "scatter",
@@ -146,7 +148,7 @@ p_u_after <- plot_ly() %>%
             y = d5$ux[950:2000],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "u<sub>x</sub>") %>%
   layout(xaxis = list(range = c(945, 2000),
@@ -162,7 +164,8 @@ p_u_after <- plot_ly() %>%
 sub_plots_p_u <- subplot(style(p_u_before, showlegend = FALSE),
                          p_u_after,
                          nrows = 1, margin = 0.00, titleY = T, titleX = T) %>% 
-  layout(annotations = u)
+  layout(annotations = u,
+         font = t)
 
 # Consumption share
 p_C_before <- plot_ly() %>% 
@@ -171,7 +174,7 @@ p_C_before <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "Baseline",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 1:950,#0:(nrow(d5)-1),
             y = d5$C_Y[1:950],
             type = "scatter",
@@ -182,7 +185,7 @@ p_C_before <- plot_ly() %>%
             y = d5$C_Yx[1:950],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "C/Y<sub>x</sub>") %>%
   layout(xaxis = list(range = c(-10, 950),
@@ -198,7 +201,7 @@ p_C_after <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "Baseline",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 950:2000,#0:(nrow(d5)-1),
             y = d5$C_Y[950:2000],
             type = "scatter",
@@ -209,7 +212,7 @@ p_C_after <- plot_ly() %>%
             y = d5$C_Yx[950:2000],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "C/Y<sub>x</sub>") %>%
   layout(xaxis = list(range = c(945, 2000),
@@ -233,7 +236,7 @@ p_I_before <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "I/Y<sub>baseline</sub>",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 1:950,#0:(nrow(d5)-1),
             y = d5$I_Y[1:950],
             type = "scatter",
@@ -244,7 +247,7 @@ p_I_before <- plot_ly() %>%
             y = d5$I_Yx[1:950],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "I/Y<sub>x</sub>") %>%
   layout(xaxis = list(range = c(-10, 950),
@@ -261,7 +264,7 @@ p_I_after <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "I/Y<sub>baseline</sub>",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 950:2000,#0:(nrow(d5)-1),
             y = d5$I_Y[950:2000],
             type = "scatter",
@@ -272,7 +275,7 @@ p_I_after <- plot_ly() %>%
             y = d5$I_Yx[950:2000],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "I/Y<sub>x</sub>") %>%
   layout(xaxis = list(range = c(945, 2000),
@@ -292,6 +295,12 @@ sub_plots_p_I <- subplot(style(p_I_before, showlegend = FALSE),
 # Government share
 p_G_before <- plot_ly() %>% 
   add_trace(x = 1:950,#0:(nrow(d5)-1),
+            y = 0.2,
+            type = "scatter",
+            mode = "lines",
+            name = "G/Y<sub>baseline</sub>",
+            line = list(color = "lightgrey")) %>% 
+  add_trace(x = 1:950,#0:(nrow(d5)-1),
             y = round(d5$G_Y[1:950], digits = 2),
             type = "scatter",
             mode = "lines",
@@ -301,7 +310,7 @@ p_G_before <- plot_ly() %>%
             y = round(d5$G_Yx[1:950], digits = 2),
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "G/Y<sub>x</sub>") %>%
   layout(xaxis = list(range = c(-10, 950),
@@ -313,6 +322,12 @@ p_G_before <- plot_ly() %>%
 
 p_G_after <- plot_ly() %>% 
   add_trace(x = 950:2000,#0:(nrow(d5)-1),
+            y = 0.2,
+            type = "scatter",
+            mode = "lines",
+            name = "G/Y<sub>baseline</sub>",
+            line = list(color = "lightgrey")) %>% 
+  add_trace(x = 950:2000,#0:(nrow(d5)-1),
             y = round(d5$G_Y[950:2000], digits = 2),
             type = "scatter",
             mode = "lines",
@@ -322,7 +337,7 @@ p_G_after <- plot_ly() %>%
             y = round(d5$G_Yx[950:2000], digits = 2),
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "G/Y<sub>x</sub>") %>%
   layout(xaxis = list(range = c(945, 2000),
@@ -346,7 +361,7 @@ p_NX_before <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "Baseline",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 1:950,#0:(nrow(d5)-1),
             y = d5$NX_Y[1:950],
             type = "scatter",
@@ -357,7 +372,7 @@ p_NX_before <- plot_ly() %>%
             y = d5$NX_Yx[1:950],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "External economy") %>% # NX/Y<sub>x</sub>
   layout(xaxis = list(range = c(-10, 950),
@@ -374,7 +389,7 @@ p_NX_after <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "Baseline",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 950:2000,#0:(nrow(d5)-1),
             y = d5$NX_Y[950:2000],
             type = "scatter",
@@ -385,7 +400,7 @@ p_NX_after <- plot_ly() %>%
             y = d5$NX_Yx[950:2000],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "External economy") %>% # NX/Y<sub>x</sub>
   layout(xaxis = list(range = c(945, 2000),
@@ -410,7 +425,7 @@ p_NIIP_before <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "Baseline",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 1:950,#0:(nrow(d5)-1),
             y = d5$NIIP_Y[1:950],
             type = "scatter",
@@ -421,7 +436,7 @@ p_NIIP_before <- plot_ly() %>%
             y = d5$NIIP_Yx[1:950],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "External economy") %>% 
   layout(xaxis = list(range = c(-10, 950),
@@ -438,7 +453,7 @@ p_NIIP_after <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "Baseline",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 950:2000,#0:(nrow(d5)-1),
             y = d5$NIIP_Y[950:2000],
             type = "scatter",
@@ -449,7 +464,7 @@ p_NIIP_after <- plot_ly() %>%
             y = d5$NIIP_Yx[950:2000],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "External economy") %>% 
   layout(xaxis = list(range = c(945, 2000),
@@ -474,7 +489,7 @@ p_S_g_Y_before <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "Baseline",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 1:950,#0:(nrow(d5)-1),
             y = d5$S_g[1:950],
             type = "scatter",
@@ -485,7 +500,7 @@ p_S_g_Y_before <- plot_ly() %>%
             y = d5$S_gx[1:950],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "S_g / Y") %>% 
   layout(xaxis = list(range = c(-10, 950),
@@ -501,7 +516,7 @@ p_S_g_Y_after <- plot_ly() %>%
             type = "scatter",
             mode = "lines",
             name = "Baseline",
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   add_trace(x = 950:2000,#0:(nrow(d5)-1),
             y = d5$S_g[950:2000],
             type = "scatter",
@@ -512,7 +527,7 @@ p_S_g_Y_after <- plot_ly() %>%
             y = d5$S_gx[950:2000],
             type = "scatter",
             mode = "lines",
-            line = list(color = "red",
+            line = list(color = "rgb(144,144,144)",
                         dash = "dash"),
             name = "S_g / Y") %>% 
   layout(xaxis = list(range = c(945, 2000),
@@ -537,7 +552,7 @@ p_L_Yh2_before <- plot_ly() %>%
             mode = "lines",
             name = "Max leverage ratio",
             showlegend = TRUE,
-            line = list(color = "grey", 
+            line = list(color = "lightgrey", 
                         dash = "dot")) %>% 
   add_trace(x = 1:950,#0:(nrow(d5)-1),
             y = d5$L_Yh2[1:950],
@@ -552,7 +567,7 @@ p_L_Yh2_before <- plot_ly() %>%
             mode = "lines",
             name = "Baseline",
             showlegend = FALSE,
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   layout(xaxis = list(range = c(-10, 950),
                       tickfont = list(size = 7)),
          yaxis = list(range = c(-0.01, 0.4), 
@@ -567,7 +582,7 @@ p_L_Yh2_after <- plot_ly() %>%
             mode = "lines",
             name = "Max leverage ratio",
             showlegend = TRUE,
-            line = list(color = "grey", 
+            line = list(color = "lightgrey", 
                         dash = "dot")) %>% 
   add_trace(x = 950:2000,#0:(nrow(d5)-1),
             y = d5$L_Yh2[950:2000],
@@ -582,7 +597,7 @@ p_L_Yh2_after <- plot_ly() %>%
             mode = "lines",
             name = "Baseline",
             showlegend = FALSE,
-            line = list(color = "grey")) %>% 
+            line = list(color = "lightgrey")) %>% 
   layout(xaxis = list(range = c(945, 2000),
                       dtick = 200,
                       tickfont = list(size = 7)),
@@ -617,7 +632,7 @@ sub_plots <- subplot(style(sub_plots_p_u, showlegend = FALSE),
 
 sub_plots
 
-orca(
-  sub_plots,
-  file = "R/plots/figure5_alternative.pdf"
-)
+# orca(
+#   sub_plots,
+#   file = "R/plots/figure5_alternative.pdf"
+# )
