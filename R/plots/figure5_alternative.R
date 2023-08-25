@@ -636,3 +636,13 @@ sub_plots
 #   sub_plots,
 #   file = "R/plots/figure5_alternative.pdf"
 # )
+
+# orca(
+#   sub_plots,
+#   file = "R/plots/figure5_alternative.svg"
+# )
+# 
+# orca(
+#   sub_plots,
+#   file = "R/plots/figure5_alternative.png"
+# )
